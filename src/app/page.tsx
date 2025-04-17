@@ -1,4 +1,4 @@
-import TodoApp from "@/components/todo-app";
+import TodoApp from "@/components/todo/todo-app";
 
 export default function Home() {
   return (
