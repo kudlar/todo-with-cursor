@@ -9,11 +9,13 @@ import { TodoHeader } from "./todo-header"
 import { TodoForm } from "./todo-form"
 import { TodoList } from "./todo-list"
 import { TodoFooter } from "./todo-footer"
+import confetti from 'canvas-confetti'
 
 export default function TodoApp() {
   const [todos, setTodos] = useState<Todo[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [showFireworks, setShowFireworks] = useState(false)
 
   // Load todos on component mount
   useEffect(() => {
@@ -44,6 +46,12 @@ export default function TodoApp() {
         createdAt: Timestamp.now(),
       }
       setTodos([newTodo, ...todos])
+      // Trigger fireworks
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
     } catch (error) {
       console.error("Error adding todo:", error)
       setError("Failed to add todo. Please try again.")
